@@ -1,0 +1,57 @@
+group 'tech.soit.flutter.system_clock'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    defaultConfig {
+        minSdkVersion 16
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = [
+                    'libs',
+            ]
+        }
+    }
+}
+
+dependencies {
+}
