@@ -4,6 +4,13 @@ A Flutter tools to get system clock.
 
 ## Getting Started
 
+```dart
+
+import 'package:system_clock/system_clock.dart';
+
+print("current uptime in mills: ${SystemClock.uptimeMills}")
+
+```
 
 ## Refs
 

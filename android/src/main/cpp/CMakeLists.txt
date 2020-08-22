@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-include_directories(include)
+
+set(IOS_CLASS_PATH ../../../../ios/Classes)
+
+include_directories(${IOS_CLASS_PATH}/include)
 
 add_library(
         systemclock
 
         SHARED
-        system_clock.cpp
+        ${IOS_CLASS_PATH}/system_clock.cpp
 )
 
 find_library(

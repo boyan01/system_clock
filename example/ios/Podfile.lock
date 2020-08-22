@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - system_clock (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - system_clock (from `.symlinks/plugins/system_clock/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  system_clock:
+    :path: ".symlinks/plugins/system_clock/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  system_clock: 16472913b16b66f002caba2e43e024e149623cd8
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.9.3

@@ -4,7 +4,7 @@
 
 #include <stdint.h>
 
-#define DART_EXPORT extern "C"  __attribute__((visibility("default"))) __attribute__((used))
+#define DART_EXPORT extern "C" __attribute__((visibility("default"))) __attribute__((used))
 
 typedef int64_t nsecs_t; // nano-seconds
 
