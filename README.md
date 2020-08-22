@@ -1,5 +1,7 @@
 # system_clock
 
+[![Pub](https://img.shields.io/pub/v/system_clock.svg)](https://pub.dartlang.org/packages/system_clock)
+
 A Flutter tools to get system clock.
 
 ## Getting Started
