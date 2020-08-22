@@ -1,11 +1,9 @@
-// You have generated a new plugin project without
-// specifying the `--platforms` flag. A plugin project supports no platforms is generated.
-// To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
-// directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
-
 import 'dart:ffi';
 import 'dart:io';
 
+///
+/// timekeeping facilities.
+///
 class SystemClock {
   static final _library = Platform.isAndroid
       ? DynamicLibrary.open("libsystemclock.so")
@@ -15,7 +13,12 @@ class SystemClock {
       .lookup<NativeFunction<Int64 Function()>>("system_clock_uptimeMills")
       .asFunction();
 
-  static int get uptime {
+  ///
+  /// Returns milliseconds since boot, not counting time spent in deep sleep.
+  ///
+  /// Note: This value may get reset occasionally (before it would otherwise wrap around).
+  ///
+  static int get uptimeMills {
     return _uptime();
   }
 }

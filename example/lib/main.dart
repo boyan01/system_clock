@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('SystemUpTimes: ${SystemClock.uptime}'),
+          child: Text('SystemUpTimes: ${SystemClock.uptimeMills}'),
         ),
       ),
     );
