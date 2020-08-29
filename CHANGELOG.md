@@ -9,3 +9,7 @@
 ## 0.3.0
 
 * fix version error
+
+## 0.3.1
+
+ * fix build error 

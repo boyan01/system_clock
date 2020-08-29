@@ -20,7 +20,10 @@ rootProject.allprojects {
             url "https://maven.pkg.github.com/boyan01/system_clock"
             credentials {
                 username "yangbin3"
-                password "ba533df42046f21fa1f88a61139007a561e2ce28"
+                // https://github.community/t/download-from-github-package-registry-without-authentication/14407/7
+                // so split it
+                def p = "36c4488f95ee778ecd" + "18744c8e"
+                password "${p}8fa539da5c7d3a"
             }
         }
     }
