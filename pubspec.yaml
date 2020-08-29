@@ -1,6 +1,6 @@
 name: system_clock
 description: A Flutter plugin to get current times.
-version: 0.2.0
+version: 0.3.0
 author: yangbinyhhbn@gmail.com
 homepage: https://github.com/boyan01/system_clock
 

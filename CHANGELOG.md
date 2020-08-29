@@ -5,3 +5,7 @@
 ## 0.2.0
 
 * publish android dynamic library to github'packages
+
+## 0.3.0
+
+* fix version error
