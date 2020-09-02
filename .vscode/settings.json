@@ -1,7 +1,3 @@
 {
-    "files.associations": {
-        "cstdlib": "cpp",
-        "ctime": "cpp",
-        "*.mm": "cpp"
-    }
+    "dart.lineLength": 120
 }

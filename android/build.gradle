@@ -16,16 +16,6 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url "https://maven.pkg.github.com/boyan01/system_clock"
-            credentials {
-                username "yangbin3"
-                // https://github.community/t/download-from-github-package-registry-without-authentication/14407/7
-                // so split it
-                def p = "36c4488f95ee778ecd" + "18744c8e"
-                password "${p}8fa539da5c7d3a"
-            }
-        }
     }
 }
 
@@ -35,12 +25,26 @@ android {
     compileSdkVersion 28
     defaultConfig {
         minSdkVersion 16
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
     }
     lintOptions {
         disable 'InvalidPackage'
     }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+    buildFeatures {
+        buildConfig = false
+    }
 }
 
 dependencies {
-    implementation("tech.soit.flutter:system-clock-dynamic-lib:1.0")
+
 }
