@@ -3,7 +3,11 @@
 
 #include <stdint.h>
 
+#if !_WIN32
 #define DART_EXPORT extern "C" __attribute__((visibility("default"))) __attribute__((used))
+#else
+#define DART_EXPORT extern "C" __declspec(dllexport)
+#endif //OS_Windows
 
 typedef int64_t nsecs_t; // nano-seconds
 

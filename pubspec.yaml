@@ -31,3 +31,5 @@ flutter:
         pluginClass: SystemClockPlugin
       macos:
         pluginClass: SystemClockPlugin
+      windows:
+        pluginClass: SystemClockPlugin

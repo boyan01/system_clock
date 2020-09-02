@@ -46,39 +46,13 @@ nsecs_t system_clock_systemTime(int clock)
     return nsecs_t(t.tv_sec) * 1000000000LL + t.tv_nsec;
 }
 
-#elif __APPLE__
-
-#include "TargetConditionals.h"
-#include <sys/sysctl.h>
-#include <sys/time.h>
-
-#if TARGET_OS_IPHONE
+#elif _WIN32
+#include <Windows.h>
 nsecs_t system_clock_systemTime(int clock)
 {
     checkClockId(clock);
-    // Clock support varies widely across hosts. Mac OS doesn't support
-    // CLOCK_BOOTTIME (and doesn't even have clock_gettime until 10.12).
-    // Windows is windows.
-    timeval t = {};
-    gettimeofday(&t, nullptr);
-    return nsecs_t(t.tv_sec) * 1000000000LL + nsecs_t(t.tv_usec) * 1000LL;
+    int64_t tick = static_cast<int64_t>(GetTickCount());
+    return tick * 1000000LL;
 }
-#elif TARGET_OS_OSX
-nsecs_t system_clock_uptimeNanos(int clock)
-{
-    checkClockId(clock);
-    if (clock != SYSTEM_TIME_BOOTTIME)
-    {
-        abort();
-    }
-    timeval boottime = {};
-    size_t len = sizeof(timeval);
-    int mib[2] = {CTL_KERN, KERN_BOOTTIME};
-    if (sysctl(mib, 2, &boottime, &len, nullptr, 0) < 0)
-    {
-        return -1;
-    }
-}
-#endif
 
 #endif
