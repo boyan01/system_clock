@@ -2,15 +2,21 @@
 
 [![Pub](https://img.shields.io/pub/v/system_clock.svg)](https://pub.dartlang.org/packages/system_clock)
 
-A Flutter tools to get system clock.
+Flutter timekeeping facilities, powered by `dart:ffi`.
+
+support: Android、iOS、Macos
+
+wip: linux, Windows
 
 ## Getting Started
 
 ```dart
-
 import 'package:system_clock/system_clock.dart';
 
-print("current uptime in mills: ${SystemClock.uptimeMills}")
+void main() {
+  println("system uptime: ${SystemClock.uptime()}");
+  println("system elapsed realtime: ${SystemClock.elapsedRealtime()}");
+}
 
 ```
 
