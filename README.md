@@ -4,9 +4,9 @@
 
 Flutter timekeeping facilities, powered by `dart:ffi`.
 
-support: Android、iOS、Macos
+support platforms: **Android**、**iOS**、**Macos**、**Windows**
 
-wip: linux, Windows
+TODO: **linux**
 
 ## Getting Started
 

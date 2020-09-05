@@ -1,3 +1,9 @@
+## 0.4.0
+
+* break change. return `Duration` instead.
+* add `SystemClock.elapsedRealtime()`.
+* support Windows platform.
+
 ## 0.0.1
 
 * implement SystemClock.uptimeMills.
