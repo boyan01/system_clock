@@ -1,11 +1,11 @@
 name: system_clock
 description: Flutter timekeeping facilities. Powered by ffi
-version: 0.4.0
+version: 0.4.1
 author: yangbinyhhbn@gmail.com
 homepage: https://github.com/boyan01/system_clock
 
 environment:
-  sdk: ">=2.9.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
   flutter: ">=1.20.0 <2.0.0"
 
 dependencies:

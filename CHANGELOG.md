@@ -1,3 +1,7 @@
+## 0.4.1
+
+* fix windows symbol link do not work.
+
 ## 0.4.0
 
 * break change. return `Duration` instead.
