@@ -1,3 +1,7 @@
+## 0.5.0
+
+* add windows publish script.
+
 ## 0.4.1
 
 * fix windows symbol link do not work.

@@ -1,6 +1,6 @@
 name: system_clock
 description: Flutter timekeeping facilities. Powered by ffi
-version: 0.4.1
+version: 0.5.0
 author: yangbinyhhbn@gmail.com
 homepage: https://github.com/boyan01/system_clock
 
@@ -19,11 +19,11 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
-    # This plugin project was generated without specifying any
-    # platforms with the `--platform` argument. If you see the `fake_platform` map below, remove it and
-    # then add platforms following the instruction here:
-    # https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms
-    # -------------------
+      # This plugin project was generated without specifying any
+      # platforms with the `--platform` argument. If you see the `fake_platform` map below, remove it and
+      # then add platforms following the instruction here:
+      # https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms
+      # -------------------
       android:
         package: tech.soit.flutter.system_clock
         pluginClass: SystemClockPlugin

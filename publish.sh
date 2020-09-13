@@ -1,4 +1,4 @@
 #!/bin/bash
 cd tools
 pub get
-pub run ./publish.dart
+pub run ./bin/publish.dart
