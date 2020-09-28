@@ -65,7 +65,13 @@ extension on ProcessResult {
 }
 
 Future<void> _publish(Directory dir) async {
-  final process = await Process.start("pwsh", ["-Command", "flutter", "pub", "publish"], workingDirectory: dir.path);
+  Process process;
+  if (Platform.isWindows) {
+    process = await Process.start("pwsh", ["-Command", "flutter", "pub", "publish"], workingDirectory: dir.path);
+  } else {
+    process = await Process.start("flutter", ["pub", "publish"], workingDirectory: dir.path);
+  }
+
   process.stdin.addStream(stdin);
   stdout.addStream(process.stdout);
   stderr.addStream(process.stderr);
