@@ -29,14 +29,15 @@ class SystemClock {
   static final _ClockFunction _elapsedRealtime = _lookupClockFunc(_library, "system_clock_elapsed_realtime");
 
   ///
-  /// Returns milliseconds since boot, not counting time spent in deep sleep.
-  ///
-  /// Note: This value may get reset occasionally (before it would otherwise wrap around).
+  /// Duration since boot, not counting time spent in deep sleep.
   ///
   static Duration uptime() {
     return Duration(microseconds: _uptime());
   }
 
+  ///
+  /// Duration since boot, including time spent in sleep.
+  ///
   static Duration elapsedRealtime() {
     return Duration(microseconds: _elapsedRealtime());
   }

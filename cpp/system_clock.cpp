@@ -10,15 +10,15 @@
 
 int64_t system_clock_uptime()
 {
-    return nanoseconds_to_microseconds(system_clock_systemTime(SYSTEM_TIME_MONOTONIC));
+    return nanoseconds_to_microseconds(system_clock_systemTime(SYSTEM_CLOCK_UPTTIME));
 }
 
 int64_t system_clock_elapsed_realtime()
 {
-    return nanoseconds_to_microseconds(system_clock_systemTime(SYSTEM_TIME_BOOTTIME));
+    return nanoseconds_to_microseconds(system_clock_systemTime(SYSTEM_CLOCK_ELLAPSED_REALTIME));
 }
 
-static constexpr size_t clock_id_max = 5;
+static constexpr size_t clock_id_max = 2;
 
 static void checkClockId(int clock)
 {
@@ -27,20 +27,19 @@ static void checkClockId(int clock)
 }
 
 #if defined(__linux__) || defined(__APPLE__)
+
 #ifdef __linux__
 #include <sys/sysinfo.h>
 #endif
-#ifdef __APPLE__
-#ifndef CLOCK_BOOTTIME
-#define CLOCK_BOOTTIME CLOCK_UPTIME_RAW
-#endif
-#endif
+
 nsecs_t system_clock_systemTime(int clock)
 {
     checkClockId(clock);
-    static constexpr clockid_t clocks[] = {CLOCK_REALTIME, CLOCK_MONOTONIC,
-                                           CLOCK_PROCESS_CPUTIME_ID, CLOCK_THREAD_CPUTIME_ID,
-                                           CLOCK_BOOTTIME};
+#ifdef __linux__
+    static constexpr clockid_t clocks[] = {CLOCK_BOOTTIME, CLOCK_MONOTONIC};
+#else
+    static constexpr clockid_t clocks[] = {CLOCK_MONOTONIC, CLOCK_UPTIME_RAW};
+#endif
     timespec t = {};
     clock_gettime(clocks[clock], &t);
     return nsecs_t(t.tv_sec) * 1000000000LL + t.tv_nsec;
