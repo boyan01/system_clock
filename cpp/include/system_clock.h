@@ -4,26 +4,22 @@
 #include <stdint.h>
 
 #if !_WIN32
-#define DART_EXPORT extern "C" __attribute__((visibility("default"))) __attribute__((used))
+#define _SYSTEM_CLOCK_DART_EXPORT extern "C" __attribute__((visibility("default"))) __attribute__((used))
 #else
-#define DART_EXPORT extern "C" __declspec(dllexport)
+#define _SYSTEM_CLOCK_DART_EXPORT extern "C" __declspec(dllexport)
 #endif //OS_Windows
 
 typedef int64_t nsecs_t; // nano-seconds
 
-enum
-{
-    SYSTEM_TIME_REALTIME = 0,  // system-wide realtime clock
-    SYSTEM_TIME_MONOTONIC = 1, // monotonic time since unspecified starting point
-    SYSTEM_TIME_PROCESS = 2,   // high-resolution per-process clock
-    SYSTEM_TIME_THREAD = 3,    // high-resolution per-thread clock
-    SYSTEM_TIME_BOOTTIME = 4   // same as SYSTEM_TIME_MONOTONIC, but including CPU suspend time
+enum {
+    SYSTEM_CLOCK_ELLAPSED_REALTIME = 0, // time since boot, including time spent in sleep.
+    SYSTEM_CLOCK_UPTTIME           = 1 // time since boot, not counting time spent in deep sleep.
 };
 
-DART_EXPORT
+_SYSTEM_CLOCK_DART_EXPORT
 int64_t system_clock_uptime();
 
-DART_EXPORT
+_SYSTEM_CLOCK_DART_EXPORT
 int64_t system_clock_elapsed_realtime();
 
 nsecs_t system_clock_systemTime(int clock);
