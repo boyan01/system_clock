@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:math';
 
 typedef _ClockFunction = int Function();
 
@@ -12,19 +13,17 @@ DynamicLibrary _openLibrary() {
     try {
       return DynamicLibrary.open("libsystemclock.so");
     } catch (_) {
-      if (Platform.isAndroid) {
-        // On some (especially old) Android devices, we somehow can't dlopen
-        // libraries shipped with the apk. We need to find the full path of the
-        // library (/data/data/<id>/lib/xxx.so) and open that one.
-        // For details, see https://github.com/simolus3/moor/issues/420
-        final appIdAsBytes = File('/proc/self/cmdline').readAsBytesSync();
+      // On some (especially old) Android devices, we somehow can't dlopen
+      // libraries shipped with the apk. We need to find the full path of the
+      // library (/data/data/<id>/lib/xxx.so) and open that one.
+      // For details, see https://github.com/simolus3/moor/issues/420
+      final appIdAsBytes = File('/proc/self/cmdline').readAsBytesSync();
 
-        // app id ends with the first \0 character in here.
-        final endOfAppId = max(appIdAsBytes.indexOf(0), 0);
-        final appId = String.fromCharCodes(appIdAsBytes.sublist(0, endOfAppId));
+      // app id ends with the first \0 character in here.
+      final endOfAppId = max(appIdAsBytes.indexOf(0), 0);
+      final appId = String.fromCharCodes(appIdAsBytes.sublist(0, endOfAppId));
 
-        return DynamicLibrary.open('/data/data/$appId/lib/libsystemclock.so');
-      }
+      return DynamicLibrary.open('/data/data/$appId/lib/libsystemclock.so');
     }
   }
   if (Platform.isWindows) {

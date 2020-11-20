@@ -1,3 +1,7 @@
+## 0.8.0
+
+* android: retry to load .so library if load failed. fix #4. 
+
 ## 0.7.0
 * android : decrease android gradle plugin to 3.5.0
 * ios : fix wrong clock usage. https://github.com/boyan01/system_clock/issues/3

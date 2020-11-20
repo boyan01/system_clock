@@ -6,7 +6,7 @@ void main() {
 }
 
 DateTime _lastBootDatetime() {
-  final bootSinceEpoch = DateTime.now().microsecondsSinceEpoch - SystemClock.uptime().inMicroseconds;
+  final bootSinceEpoch = DateTime.now().microsecondsSinceEpoch - SystemClock.elapsedRealtime().inMicroseconds;
   return DateTime.fromMicrosecondsSinceEpoch(bootSinceEpoch);
 }
 
@@ -48,11 +48,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             children: [
               ListTile(
                 title: Text("uptime: ${SystemClock.uptime()}"),
-                subtitle: Text("last boot: ${_lastBootDatetime()}"),
                 onTap: () {},
               ),
               ListTile(
                 title: Text("elapsedRealtime: ${SystemClock.elapsedRealtime()}"),
+                subtitle: Text("last boot: ${_lastBootDatetime()}"),
                 onTap: () {},
               ),
             ],
