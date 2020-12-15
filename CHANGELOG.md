@@ -1,3 +1,6 @@
+## 1.0.0-nullsafety.0
+* migrate to null safety.
+
 ## 0.8.0
 
 * android: retry to load .so library if load failed. fix #4. 
