@@ -1,6 +1,6 @@
 library system_clock;
 
-import 'src/clock.dart' if (dart.library.io) 'src/clocks.dart' as clock;
+import 'src/clock.dart' if (dart.library.io) 'src/clock_io.dart' as clock;
 
 ///
 /// timekeeping facilities.

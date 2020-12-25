@@ -1,3 +1,7 @@
+## 1.1.0-nullsafety.1
+
+* fix android/ios/macos/windows build failed.
+
 ## 1.1.0-nullsafety.0
 
 * add web support
