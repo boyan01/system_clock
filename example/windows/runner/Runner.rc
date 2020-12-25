@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "tech.soit.flutter" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
+            VALUE "FileDescription", "Demonstrates how to use the system_clock plugin." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "example" "\0"
+            VALUE "InternalName", "system_clock_example" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2020 tech.soit.flutter. All rights reserved." "\0"
-            VALUE "OriginalFilename", "example.exe" "\0"
-            VALUE "ProductName", "example" "\0"
+            VALUE "OriginalFilename", "system_clock_example.exe" "\0"
+            VALUE "ProductName", "system_clock_example" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
