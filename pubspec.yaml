@@ -1,6 +1,6 @@
 name: system_clock
 description: Flutter timekeeping facilities. Powered by ffi
-version: 1.1.0-nullsafety.1
+version: 1.2.0-nullsafety.1
 author: yangbinyhhbn@gmail.com
 homepage: https://github.com/boyan01/system_clock
 
@@ -34,4 +34,6 @@ flutter:
       macos:
         pluginClass: SystemClockPlugin
       windows:
+        pluginClass: SystemClockPlugin
+      linux:
         pluginClass: SystemClockPlugin

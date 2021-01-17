@@ -1,3 +1,7 @@
+## 1.2.0-nullsafety.1
+
+* add linux support
+
 ## 1.1.0-nullsafety.1
 
 * fix android/ios/macos/windows build failed.
