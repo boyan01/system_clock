@@ -1,3 +1,7 @@
+## 1.2.0
+
+* the same as 1.2.0-nullsafety.1
+
 ## 1.2.0-nullsafety.1
 
 * add linux support
