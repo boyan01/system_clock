@@ -1,7 +1,0 @@
-{
-    "dart.lineLength": 120,
-    "files.associations": {
-        "*.mm": "cpp",
-        "ctime": "cpp"
-    }
-}
