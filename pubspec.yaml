@@ -1,7 +1,6 @@
 name: system_clock
 description: Flutter timekeeping facilities. Powered by ffi
 version: 1.2.0
-author: yangbinyhhbn@gmail.com
 homepage: https://github.com/boyan01/system_clock
 
 environment:
@@ -13,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
+  ffigen: ^7.2.0
 
 dev_dependencies:
   flutter_test:
@@ -28,10 +28,6 @@ flutter:
       # -------------------
       android:
         package: tech.soit.flutter.system_clock
-        pluginClass: SystemClockPlugin
-      ios:
-        pluginClass: SystemClockPlugin
-      macos:
         pluginClass: SystemClockPlugin
       windows:
         pluginClass: SystemClockPlugin

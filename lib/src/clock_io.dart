@@ -2,11 +2,8 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
-typedef _ClockFunction = int Function();
-
-_ClockFunction _lookupClockFunc(DynamicLibrary library, String symbol) {
-  return library.lookup<NativeFunction<Int64 Function()>>(symbol).asFunction();
-}
+import 'c_time_bindings_generated.dart';
+import 'package:ffi/ffi.dart';
 
 DynamicLibrary _openLibrary() {
   if (Platform.isAndroid) {
@@ -34,21 +31,42 @@ DynamicLibrary _openLibrary() {
 
 final _library = _openLibrary();
 
-final _ClockFunction _uptime =
-    _lookupClockFunc(_library, "system_clock_uptime");
-final _ClockFunction _elapsedRealtime =
-    _lookupClockFunc(_library, "system_clock_elapsed_realtime");
+final _binding = TimeBindings(_library);
+
+final _isLinux = Platform.isLinux || Platform.isAndroid;
 
 ///
 /// Duration since boot, not counting time spent in deep sleep.
 ///
 Duration uptime() {
-  return Duration(microseconds: _uptime());
+  final ts = malloc<timespec>();
+
+  if (_isLinux) {
+    // CLOCK_MONOTONIC
+    _binding.clock_gettime(1, ts);
+  } else {
+    // CLOCK_UPTIME_RAW
+    _binding.clock_gettime(8, ts);
+  }
+  final d = ts.ref.tv_sec * 1000000000 + ts.ref.tv_nsec;
+  malloc.free(ts);
+  return Duration(microseconds: d ~/ 1000);
 }
 
 ///
 /// Duration since boot, including time spent in sleep.
 ///
 Duration elapsedRealtime() {
-  return Duration(microseconds: _elapsedRealtime());
+  final ts = malloc<timespec>();
+
+  if (_isLinux) {
+    // CLOCK_BOOTTIME
+    _binding.clock_gettime(7, ts);
+  } else {
+    // CLOCK_MONOTONIC
+    _binding.clock_gettime(6, ts);
+  }
+  final d = ts.ref.tv_sec * 1000000000 + ts.ref.tv_nsec;
+  malloc.free(ts);
+  return Duration(microseconds: d ~/ 1000);
 }
