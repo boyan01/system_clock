@@ -1,17 +1,11 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'c_time_bindings_generated.dart';
 import 'package:ffi/ffi.dart';
 
+import 'c_time_bindings_generated.dart';
+
 DynamicLibrary _openLibrary() {
-  if (Platform.isAndroid) {
-    try {
-      return DynamicLibrary.open('libc.so');
-    } catch (error, stacktrace) {
-      print('Failed to open libc.so $error $stacktrace');
-    }
-  }
   if (Platform.isWindows) {
     return DynamicLibrary.open("system_clock_plugin.dll");
   }

@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:system_clock/system_clock.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 DateTime _lastBootDatetime() {
-  final bootSinceEpoch = DateTime.now().microsecondsSinceEpoch - SystemClock.elapsedRealtime().inMicroseconds;
+  final bootSinceEpoch = DateTime.now().microsecondsSinceEpoch -
+      SystemClock.elapsedRealtime().inMicroseconds;
   return DateTime.fromMicrosecondsSinceEpoch(bootSinceEpoch);
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
@@ -23,7 +26,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(days: 30),
+      duration: const Duration(days: 30),
     );
     _controller.forward();
     _controller.addListener(() {
@@ -51,7 +54,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 onTap: () {},
               ),
               ListTile(
-                title: Text("elapsedRealtime: ${SystemClock.elapsedRealtime()}"),
+                title:
+                    Text("elapsedRealtime: ${SystemClock.elapsedRealtime()}"),
                 subtitle: Text("last boot: ${_lastBootDatetime()}"),
                 onTap: () {},
               ),

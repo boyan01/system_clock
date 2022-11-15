@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 
 main(List<String> args) async {
   final temDir = Directory.systemTemp.createTempSync("system_clock");
-  print("temDir = ${temDir.path}");
+  debugPrint("temDir = ${temDir.path}");
   if (temDir.existsSync()) {
     temDir.deleteSync(recursive: true);
   }
@@ -26,19 +27,23 @@ Future<void> _copy(Directory from, Directory dest) async {
   ).outputLines.map((e) => e.platformPath).toSet();
 
   from.listSync(recursive: true, followLinks: false).forEach((var entity) {
-    final entityRelativePath = path.relative(entity.path, from: from.path).platformPath;
+    final entityRelativePath =
+        path.relative(entity.path, from: from.path).platformPath;
     if (!files.contains(entityRelativePath)) {
       return;
     }
-    final dir = Directory(path.join(dest.path, path.dirname(entityRelativePath)));
+    final dir =
+        Directory(path.join(dest.path, path.dirname(entityRelativePath)));
     if (!dir.existsSync()) {
       dir.createSync(recursive: true);
     }
     if (entity is File) {
       entity.copySync(path.join(dest.path, entityRelativePath));
     } else if (entity is Link) {
-      final newFilePath = path.normalize(path.join(dest.path, entityRelativePath));
-      final target = File(path.normalize(path.absolute(path.dirname(entity.absolute.path), entity.targetSync())));
+      final newFilePath =
+          path.normalize(path.join(dest.path, entityRelativePath));
+      final target = File(path.normalize(path.absolute(
+          path.dirname(entity.absolute.path), entity.targetSync())));
       target.copySync(newFilePath);
     }
   });
@@ -67,9 +72,12 @@ extension on ProcessResult {
 Future<void> _publish(Directory dir) async {
   Process process;
   if (Platform.isWindows) {
-    process = await Process.start("pwsh", ["-Command", "flutter", "pub", "publish"], workingDirectory: dir.path);
+    process = await Process.start(
+        "pwsh", ["-Command", "flutter", "pub", "publish"],
+        workingDirectory: dir.path);
   } else {
-    process = await Process.start("flutter", ["pub", "publish"], workingDirectory: dir.path);
+    process = await Process.start("flutter", ["pub", "publish"],
+        workingDirectory: dir.path);
   }
 
   process.stdin.addStream(stdin);
