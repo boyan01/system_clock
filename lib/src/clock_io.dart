@@ -1,6 +1,5 @@
 import 'dart:ffi';
 import 'dart:io';
-import 'dart:math';
 
 import 'c_time_bindings_generated.dart';
 import 'package:ffi/ffi.dart';
