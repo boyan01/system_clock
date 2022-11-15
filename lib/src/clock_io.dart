@@ -1,54 +1,75 @@
 import 'dart:ffi';
 import 'dart:io';
-import 'dart:math';
 
-typedef _ClockFunction = int Function();
+import 'package:ffi/ffi.dart';
 
-_ClockFunction _lookupClockFunc(DynamicLibrary library, String symbol) {
-  return library.lookup<NativeFunction<Int64 Function()>>(symbol).asFunction();
+import 'c_time_bindings_generated.dart';
+import 'win_system_clock_time_bindings_generated.dart';
+
+abstract class SystemClock {
+  /// Duration since boot, not counting time spent in deep sleep.
+  Duration uptime();
+
+  /// Duration since boot, including time spent in sleep.
+  Duration elapsedRealtime();
 }
 
-DynamicLibrary _openLibrary() {
-  if (Platform.isAndroid) {
-    try {
-      return DynamicLibrary.open("libsystemclock.so");
-    } catch (_) {
-      // On some (especially old) Android devices, we somehow can't dlopen
-      // libraries shipped with the apk. We need to find the full path of the
-      // library (/data/data/<id>/lib/xxx.so) and open that one.
-      // For details, see https://github.com/simolus3/moor/issues/420
-      final appIdAsBytes = File('/proc/self/cmdline').readAsBytesSync();
+class UnixSystemClock implements SystemClock {
+  final _binding = TimeBindings(DynamicLibrary.process());
 
-      // app id ends with the first \0 character in here.
-      final endOfAppId = max(appIdAsBytes.indexOf(0), 0);
-      final appId = String.fromCharCodes(appIdAsBytes.sublist(0, endOfAppId));
+  final _isLinux = Platform.isLinux || Platform.isAndroid;
 
-      return DynamicLibrary.open('/data/data/$appId/lib/libsystemclock.so');
+  @override
+  Duration uptime() {
+    final ts = malloc<timespec>();
+
+    if (_isLinux) {
+      // CLOCK_MONOTONIC
+      _binding.clock_gettime(1, ts);
+    } else {
+      // CLOCK_UPTIME_RAW
+      _binding.clock_gettime(8, ts);
     }
+    final d = ts.ref.tv_sec * 1000000000 + ts.ref.tv_nsec;
+    malloc.free(ts);
+    return Duration(microseconds: d ~/ 1000);
   }
-  if (Platform.isWindows) {
-    return DynamicLibrary.open("system_clock_plugin.dll");
+
+  @override
+  Duration elapsedRealtime() {
+    final ts = malloc<timespec>();
+
+    if (_isLinux) {
+      // CLOCK_BOOTTIME
+      _binding.clock_gettime(7, ts);
+    } else {
+      // CLOCK_MONOTONIC
+      _binding.clock_gettime(6, ts);
+    }
+    final d = ts.ref.tv_sec * 1000000000 + ts.ref.tv_nsec;
+    malloc.free(ts);
+    return Duration(microseconds: d ~/ 1000);
   }
-  return DynamicLibrary.process();
 }
 
-final _library = _openLibrary();
+class WinSystemClock implements SystemClock {
+  final _binding = WinClockBindings(DynamicLibrary.open('system_clock.dll'));
 
-final _ClockFunction _uptime =
-    _lookupClockFunc(_library, "system_clock_uptime");
-final _ClockFunction _elapsedRealtime =
-    _lookupClockFunc(_library, "system_clock_elapsed_realtime");
+  @override
+  Duration uptime() {
+    final d = _binding.system_clock_GetTickCount();
+    return Duration(microseconds: d * 1000);
+  }
 
-///
-/// Duration since boot, not counting time spent in deep sleep.
-///
-Duration uptime() {
-  return Duration(microseconds: _uptime());
+  @override
+  Duration elapsedRealtime() {
+    return uptime();
+  }
 }
 
-///
-/// Duration since boot, including time spent in sleep.
-///
-Duration elapsedRealtime() {
-  return Duration(microseconds: _elapsedRealtime());
-}
+final SystemClock systemClock =
+    Platform.isWindows ? WinSystemClock() : UnixSystemClock();
+
+Duration uptime() => systemClock.uptime();
+
+Duration elapsedRealtime() => systemClock.elapsedRealtime();

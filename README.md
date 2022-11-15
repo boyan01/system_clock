@@ -6,6 +6,8 @@ Flutter timekeeping facilities, powered by `dart:ffi`.
 
 support platforms: **Android**、**iOS**、**Macos**、**Windows**、 **linux**
 
+  * web is fallback to `DateTime.now()`
+
 ## Getting Started
 
 ```dart
