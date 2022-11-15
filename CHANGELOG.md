@@ -1,3 +1,7 @@
+## 2.0.0
+
+* [BREAKING] refactor project on Linux,Android,macOS,iOS to pure dart package for better integration with other projects
+
 ## 1.2.0
 
 * the same as 1.2.0-nullsafety.1
