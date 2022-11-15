@@ -8,8 +8,8 @@ DynamicLibrary _openLibrary() {
   if (Platform.isAndroid) {
     try {
       return DynamicLibrary.open('libc.so');
-    } catch (e) {
-      print('Failed to open libc.so');
+    } catch (error, stacktrace) {
+      print('Failed to open libc.so $error $stacktrace');
     }
   }
   if (Platform.isWindows) {
