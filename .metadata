@@ -4,26 +4,20 @@
 # This file should be version controlled.
 
 version:
-  revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
+  revision: 18a827f3933c19f51862dde3fa472197683249d6
   channel: stable
 
-project_type: plugin
+project_type: plugin_ffi
 
 # Tracks metadata for the flutter migrate command
 migration:
   platforms:
     - platform: root
-      create_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
-      base_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
-    - platform: android
-      create_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
-      base_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
-    - platform: linux
-      create_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
-      base_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
+      create_revision: 18a827f3933c19f51862dde3fa472197683249d6
+      base_revision: 18a827f3933c19f51862dde3fa472197683249d6
     - platform: windows
-      create_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
-      base_revision: 52b3dc25f6471c27b2144594abb11c741cb88f57
+      create_revision: 18a827f3933c19f51862dde3fa472197683249d6
+      base_revision: 18a827f3933c19f51862dde3fa472197683249d6
 
   # User provided section
 
