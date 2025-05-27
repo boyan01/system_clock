@@ -1,3 +1,7 @@
+## 2.0.1
+
+* fix error when use FLUTTER_TOOL_ARGS="--enable-asserts" flutter pub get
+
 ## 2.0.0
 
 * [BREAKING] refactor project on Linux,Android,macOS,iOS to pure dart package for better integration with other projects
@@ -19,13 +23,15 @@
 * add web support
 
 ## 1.0.0-nullsafety.0
+
 * migrate to null safety.
 
 ## 0.8.0
 
-* android: retry to load .so library if load failed. fix #4. 
+* android: retry to load .so library if load failed. fix #4.
 
 ## 0.7.0
+
 * android : decrease android gradle plugin to 3.5.0
 * ios : fix wrong clock usage. https://github.com/boyan01/system_clock/issues/3
 * ios : increase min ios version to 10.0
@@ -63,4 +69,4 @@
 
 ## 0.3.1
 
- * fix build error 
+* fix build error 
