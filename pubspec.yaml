@@ -25,3 +25,4 @@ flutter:
     platforms:
       windows:
         ffiPlugin: true
+        dartPluginClass: WinSystemClock
