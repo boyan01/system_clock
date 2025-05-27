@@ -1,6 +1,6 @@
 name: system_clock
 description: Flutter timekeeping facilities. Make it easy to get uptime, and elapsed time.
-version: 2.0.0
+version: 2.0.1
 homepage: https://github.com/boyan01/system_clock
 
 environment:
@@ -25,3 +25,4 @@ flutter:
     platforms:
       windows:
         ffiPlugin: true
+        dartPluginClass: WinSystemClock
