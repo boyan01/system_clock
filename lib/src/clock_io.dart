@@ -58,7 +58,7 @@ class WinSystemClock implements SystemClock {
   @override
   Duration uptime() {
     final d = _binding.system_clock_GetTickCount();
-    return Duration(microseconds: d * 1000);
+    return Duration(microseconds: d);
   }
 
   @override
