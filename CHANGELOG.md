@@ -1,3 +1,7 @@
+## 2.0.2
+
+* Windows: Replace GetTickCount with QueryPerformanceCounter for higher resolution timing (microsecond precision)
+
 ## 2.0.1
 
 * fix error when use FLUTTER_TOOL_ARGS="--enable-asserts" flutter pub get
