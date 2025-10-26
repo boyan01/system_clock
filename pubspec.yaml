@@ -1,28 +1,15 @@
 name: system_clock
-description: Flutter timekeeping facilities. Make it easy to get uptime, and elapsed time.
-version: 2.0.2
+description: Dart timekeeping facilities. Make it easy to get uptime, and elapsed time.
+version: 3.0.0
 homepage: https://github.com/boyan01/system_clock
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.20.0"
+  sdk: '>=2.17.0 <4.0.0'
 
 dependencies:
-  flutter:
-    sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
   ffi: ^2.0.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
+  lints: ^2.0.1
+  test: ^1.24.0
   ffigen: ^7.2.0
-
-flutter:
-  plugin:
-    platforms:
-      windows:
-        ffiPlugin: true
-        dartPluginClass: WinSystemClock

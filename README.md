@@ -2,11 +2,11 @@
 
 [![Pub](https://img.shields.io/pub/v/system_clock.svg)](https://pub.dartlang.org/packages/system_clock)
 
-Flutter timekeeping facilities, powered by `dart:ffi`.
+Dart timekeeping facilities, powered by `dart:ffi`.
 
-support platforms: **Android**、**iOS**、**Macos**、**Windows**、 **linux**
+Support platforms: **Android**, **iOS**, **macOS**, **Windows**, **Linux**
 
-  * web is fallback to `DateTime.now()`
+  * Web is fallback to `DateTime.now()`
 
 ## Getting Started
 
@@ -16,10 +16,10 @@ import 'package:system_clock/system_clock.dart';
 void main() {
 
   // Duration since boot, not counting time spent in deep sleep.
-  println("system uptime: ${SystemClock.uptime()}");
+  print("system uptime: ${SystemClock.uptime()}");
 
   // Duration since boot, including time spent in sleep.
-  println("system elapsed realtime: ${SystemClock.elapsedRealtime()}");
+  print("system elapsed realtime: ${SystemClock.elapsedRealtime()}");
 }
 
 ```

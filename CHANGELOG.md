@@ -1,5 +1,6 @@
-## 2.0.2
+## 3.0.0
 
+* BREAKING: bump minimum sdk to 2.17.0, change from flutter plugin to pure dart package.
 * Windows: Replace GetTickCount with QueryPerformanceCounter for higher resolution timing (microsecond precision)
 
 ## 2.0.1
