@@ -1,1 +1,0 @@
-/home/runner/work/system_clock/.codeql-scratch/dbs/cpp/working/autobuild/bin/cc -fPIC -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/system_clock.dir/link.d -shared -Wl,-soname,libsystem_clock.so -o libsystem_clock.so CMakeFiles/system_clock.dir/system_clock.c.o
